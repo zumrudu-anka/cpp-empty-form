@@ -17,7 +17,7 @@ return 0;
 
 string hecele(string str){
 
-int i=0,k=0,t=0,p=0,j=0;
+int i=0,k=0,p=0,j=0;
 char str2[100];
 for (i=0;str[i]!='\0';i++) // Girilen kelime dizgisinin sonuna kadar karakter karakter arama yap.
     {
