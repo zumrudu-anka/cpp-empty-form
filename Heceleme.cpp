@@ -18,15 +18,14 @@ return 0;
 string hecele(string str){
 
 int i=0,k=0,t=0,p=0,j=0;
-char str2[100],temp[100];
+char str2[100];
 for (i=0;str[i]!='\0';i++) // Girilen kelime dizgisinin sonuna kadar karakter karakter arama yap.
     {
     	if(str[i]==' ')	// karakterleri gezerken bosluk denk gelirse sonraki karaktere gec
     		{
-    		t++;
     		continue;
     		}
-    	t++;
+    	
     	if(str[i]=='a' || str[i]=='e' || str[i]=='i' || str[i]=='o' || str[i]=='u')	// sesli harfi bul
     		{
     			if(str[i+1]==' ')	// bir sonraki karakter bosluk ise bosluga kadar yazdir
