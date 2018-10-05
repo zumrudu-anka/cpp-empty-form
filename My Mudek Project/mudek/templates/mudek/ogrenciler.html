@@ -1,0 +1,44 @@
+{% extends 'mudek/base.html' %}
+{% block content %}
+{% if user.is_superuser %}
+<div style="width:90%;margin:auto;">
+	    <table id="table">
+	      <thead class="thead-dark">
+	        <tr>
+	        	<th colspan="5">
+	        		Ara:<input type="text" id="myInput" onkeyup="myFunction1()" title="Type in a name">
+	        	</th>
+	        </tr>
+	        <tr>
+	          <th align="center">Öğrenci No</th>
+	          <th align="center">Ad</th>
+	          <th align="center">Soyad</th>
+	          <th align="center">Bölüm</th>
+	          <th>
+	          	<button type="submit" class="button_sinav2" onclick="window.location.href='{% url 'mudek:ogrenci_ekle' user.id %}'"><span>Öğrenci Ekle</span></button>
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <thead class="thead-light">
+	        
+	        {% for i in ogrenciler %}
+			<tr style="height: 40px">
+	          <th align="center">{{i.ogr_no}}</th>
+	          <th align="center">{{i.ogr_ad}}</th>
+	          <th align="center">{{i.ogr_soyad}}</th>
+	          <th align="center">{{i.bolum.bolum_adi}}</th>
+	          <th>
+	          	<button style="height: 35px;width: 35%" type="submit" class="button_soru" onclick="window.location.href='{% url 'mudek:ogrenci_sil' user.id i.id %}'"><span>Öğrenci Kaldır</span></button>
+	          </th>
+	          
+	        </tr>
+	        {% empty %}
+	        <th colspan="3">Öğrenci Eklenmemiş</th>
+			{% endfor %}
+	        </thead>
+	      </tbody>
+	    </table>
+	  </div>
+{% endif %}
+{% endblock %}

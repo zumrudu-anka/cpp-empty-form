@@ -1,0 +1,71 @@
+{% extends 'mudek/base.html' %}
+{% block content %}
+<div style=" width:35%;float:left; margin-left: 32.5%;">
+    <h2 align="center">{{bolum.bolum_adi}}</h2>
+</div>
+<div style="float: right;">
+    <a class="soru-geri" href="{% url 'mudek:sinavlar' bolum.id akademisyen.id ders.id %}"><i class="material-icons">replay</i>Sınavlar</a>
+</div>
+<div style="clear: both;"></div>
+<div style="margin-left: 25px; width:25%;float: left;">
+    <h3 align="center">{{ders.ders_adi}}</h3>
+</div>
+<div style="margin-right: 25px;width: 25%;float:right;">
+    <h3 align="center">{{akademisyen.aka_bilgi}}</h3>
+</div>
+<div style="clear: both;"></div>
+<hr>  
+
+<form method="POST">
+{% csrf_token %}
+	<div style="width:60%; margin-left:5%;float: left;">
+	    <table id="table">
+	      <thead class="thead-dark">
+	        <tr>
+	          <th colspan="2" style="text-align: center;" align="center">{{sinav.sinav_tur}} - {{sinav.sinav_tarih}}</th>	     
+		    </tr>
+		  </thead>
+		      <tbody>
+		        <tr>
+		          <td class="tdclass"><label for="id_soru_no">Soru No:</label></td>
+		          <td class="tdclass"><input id="id_soru_no" type="number" name="soru_no" required=""></td>
+		        </tr>
+		        <tr>
+		          <td class="tdclass"><label for="id_soru_puan">Soru Puanı:</label></td>
+		          <td class="tdclass"><input id="id_soru_puan" type="number" name="soru_puan" required=""></td>
+		        </tr>
+		        {% if ciktilar.count == 3 %}
+			        <tr>
+			          <td class="tdclass"><label for="id_cikti"></label>{{form.cikti.0}}</td>
+			          <td class="tdclass"><input id="id_1" type="number" placeholder="Oran.." name="1"></td>
+			        </tr>
+			        <tr>
+			          <td class="tdclass"><label for="id_cikti"></label>{{form.cikti.1}}</td>
+			          <td class="tdclass"><input id="id_2" type="number" placeholder="Oran.." name="2"></td>
+			        </tr>
+			        <tr>
+			          <td class="tdclass"><label for="id_cikti"></label>{{form.cikti.2}}</td>
+			          <td class="tdclass"><input id="id_3" type="number" placeholder="Oran.." name="3"></td>
+			        </tr>
+			    {% elif ciktilar.count == 2 %}
+			    	<tr>
+			          <td class="tdclass"><label for="id_cikti"></label>{{form.cikti.0}}</td>
+			          <td class="tdclass"><input id="id_1" type="number" placeholder="Oran.." name="1"></td>
+			        </tr>
+			        <tr>
+			          <td class="tdclass"><label for="id_cikti"></label>{{form.cikti.1}}</td>
+			          <td class="tdclass"><input id="id_2" type="number" placeholder="Oran.." name="2"></td>
+			        </tr>
+			    {% elif ciktilar.count == 1 %}
+			    	<tr>
+			          <td class="tdclass"><label for="id_cikti"></label>{{form.cikti.0}}</td>
+			          <td class="tdclass"><input id="id_1" type="number" placeholder="Oran.." name="1"></td>
+			        </tr>
+			    {% endif %}
+			</tbody>
+		</table>
+	</div>
+	<button type="submit" class="button_sinav" style="margin: 5% 0% 0% 5%"><span>Soru Ekle</span></button>
+</form>
+{% endblock %}
+

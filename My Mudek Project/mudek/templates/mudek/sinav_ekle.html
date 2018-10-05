@@ -1,0 +1,22 @@
+{% extends 'mudek/base.html' %}
+{% block content %}
+<div>
+<h2 align="center">{{ders.ders_adi}}</h2>
+</div>
+<div>
+<h3 align="center">{{ders.egit_yil}} / {{ders.egit_donem}}</h3>
+</div>
+<hr>
+<form method="POST">
+    {% csrf_token %}
+    <div style="width: 25%;padding: 10px;">	
+        Sınav:{{form.sinav_tur}}
+    </div>
+    <div style="width:50%;padding: 10px;clear: both;">
+        <label for="id_sinav_tarih">Sınav Tarihi:</label><input id="id_sinav_tarih" type="date" name="sinav_tarih" required="" style="width:19%;margin-left: 5%">
+    </div>
+    <button type="submit" class="button_sinav"><span>Sınav Ekle</span></button>
+
+</form> 
+
+{% endblock %}

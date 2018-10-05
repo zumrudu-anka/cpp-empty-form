@@ -1,0 +1,17 @@
+{% extends 'mudek/base.html' %}
+
+{% block content %}
+{% if user.is_superuser %}
+<form method="POST">
+{% csrf_token %}
+<div style="width:50%;margin-left:30%;">
+		<label for="id_fakulte_adi">Fakülte Adı: </label><input id="id_fakulte_adi" type="text" name="fakulte_adi" required="" style="width:50%;margin-left: 10px">
+</div>
+<div style="width: 50%;margin-left:42%">
+<button type="submit" class="button_sinav"><span>Fakülte Ekle</span></button>
+</div>
+</form>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'mudek/base.html' %}
+{% block content %}
+{% if user.is_superuser %}
+<div style="width:90%;margin:auto;">
+	    <table id="table">
+	      <thead class="thead-dark">
+	        <tr>
+	        	<th colspan="3">
+	        		Ara:<input type="text" id="myInput" onkeyup="myFunction1()" title="Type in a name">
+	        	</th>
+	        </tr>
+	        <tr>
+	          <th align="center">Akademisyen</th>
+	          <th align="center">Bölüm</th>
+	          <th>
+	          	<button type="submit" class="button_sinav2" onclick="window.location.href='{% url 'mudek:akademisyen_ekle' user.id %}'"><span>Akademisyen Ekle</span></button>
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <thead class="thead-light">
+	        
+	        {% for i in akademisyenler %}
+			<tr style="height: 40px">
+	          <th align="center">{{i.aka_bilgi}}</th>
+	          <th align="center">{{i.bolum.bolum_adi}}</th>
+	          <th>
+	          	<button style="height: 35px;width: 35%" type="submit" class="button_soru" onclick="window.location.href='{% url 'mudek:akademisyen_sil' user.id i.id %}'"><span>Akademisyen Kaldır</span></button>
+	          </th>
+	          
+	        </tr>
+	        {% empty %}
+	        <th colspan="3">Akademisyen Eklenmemiş</th>
+			{% endfor %}
+	        </thead>
+	      </tbody>
+	    </table>
+	  </div>
+{% endif %}
+{% endblock %}

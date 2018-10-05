@@ -1,0 +1,55 @@
+{% extends 'mudek/base.html' %}
+{% block content %}
+	{% if user.is_authenticated %}
+	  <div style="width: 25%; margin: auto;">
+	    <h2 align="center">{{bolum.bolum_adi}}</h2>
+	  </div>
+	  <div style="margin-left: 25px; width:25%;float: left">
+	    <h3 align="center">{{ders.ders_adi}}</h3>
+	  </div>
+	  <div style="margin-right: 25px; width:25%;float: right">
+	  	<h3 align="center">{{akademisyen.aka_bilgi}}</h3>
+	  </div>
+	  <div style="clear:both;"></div>
+	  <hr>
+	  <div style="width:90%;margin:auto;">
+	    <table id="table">
+	      <thead class="thead-dark">
+	        <tr>
+	          <th align="center">Sınav</th>
+	          <th align="center">Tarih</th>
+	          <th colspan="3"></th>
+	          <th>
+	          	<button type="submit" class="button_sinav2" onclick="window.location.href='{% url 'mudek:sinav_ekle' bolum.id akademisyen.id ders.id %}'"><span>Sınav Ekle</span></button>
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <thead class="thead-light">
+	        
+	        {% for i in sinavlar %}
+			<tr>
+	          <th align="center">{{i.sinav_tur}}</th>
+	          <th align="center">{{i.sinav_tarih}}</th>
+	          <th>
+	          	<button type="submit" class="button_soru" onclick="window.location.href='{% url 'mudek:sorular' bolum.id akademisyen.id ders.id i.id %}'"><span>Sorular</span></button>
+	          </th>
+	          <th>
+	          	<button type="submit" class="button_soru" onclick="window.location.href='{% url 'mudek:notlar' bolum.id akademisyen.id ders.id i.id %}'"><span>Notlar</span></button>
+	          </th>
+	          <th>
+	          	<button type="submit" class="button_soru" onclick="window.location.href='{% url 'mudek:notlandir' bolum.id akademisyen.id ders.id i.id %}'"><span>Notlandır</span></button>
+	          </th>
+	          <th>
+	          	<button type="submit" class="button_soru" onclick="window.location.href='{% url 'mudek:sinav_sil' bolum.id akademisyen.id ders.id i.id %}'"><span>Sınavı Kaldır</span></button>
+	          </th>
+	        </tr>
+	        {% empty %}
+	        <th colspan="6">Henüz sınav oluşturulmamış.</th>
+			{% endfor %}
+	        </thead>
+	      </tbody>
+	    </table>
+	  </div>
+	 {% endif %}
+{% endblock %}

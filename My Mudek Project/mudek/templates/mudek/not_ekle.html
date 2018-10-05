@@ -1,0 +1,218 @@
+{% extends 'mudek/base.html' %}
+{% block content %}
+<div style=" width:35%;float:left; margin-left: 32.5%">
+	<h2 align="center">{{bolum.bolum_adi}}</h2>
+</div>
+<div style="float: right">
+	<a class="soru-geri" href="{% url 'mudek:sinavlar' bolum.id akademisyen.id ders.id %}"><i class="material-icons">replay</i>Sınavlar</a>
+</div>
+<div style="clear: both;"></div>
+<div style="margin-left: 25px; width:35%;float: left">
+	<h3 align="center">{{ders.ders_adi}} / {{sinav.sinav_tur}} - {{sinav.sinav_tarih}}</h3>
+</div>
+<div style="width: 25%;float:right;margin-right: 25px;">
+	<h3 align="center">{{akademisyen.aka_bilgi}}</h3>
+</div>
+<div style="clear: both;"></div>
+<hr>
+	  <form method="POST">
+	  	{% csrf_token %}
+		  <div class="container" style="width:80%; margin-top:20px; float: left;">
+		  	<table id="table">
+		      <thead class="thead-dark">
+		        <tr>
+		          <th colspan="3" align="center">Öğrenci</th>
+		          <th colspan="{{soru_say}}" align="center">Sorular</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <thead class="thead-light">
+		        <tr>
+		          <th>Numara</th>
+		          <th>Ad</th>
+		          <th>Soyad</th>
+
+		          {% if sorular %}
+		            {% for i in sorular|dictsort:'soru_no' %}
+		              <th>{{ i.soru_no }}</th>
+		            {% endfor %}
+		          {% else %}
+		            <th>Henüz soru eklenmemiş</th>
+		          {% endif %}
+		        </tr>
+		        </thead>
+		        {% for i in ogrenciler %}
+		        <tr>
+		          <td class="tdclass">{{i.ogr_no}}</td>
+		          <td class="tdclass">{{i.ogr_ad}}</td>
+		          <td class="tdclass">{{i.ogr_soyad}}</td>
+		          {% if sorular %}
+		          {% for j in sorular %}
+		          	{% for k in form_dizi %}
+		          		{% for t in k %}
+			          		{% if t.0 == i and t.1 == j and t.2 == 1 %}
+			 	     			<td class="tdclass">{{ form.1 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 2 %}
+			 	     			<td class="tdclass">{{ form.2 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 3 %}
+			 	     			<td class="tdclass">{{ form.3 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 4 %}
+			 	     			<td class="tdclass">{{ form.4 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 5 %}
+			 	     			<td class="tdclass">{{ form.5 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 6 %}
+			 	     			<td class="tdclass">{{ form.6 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 7 %}
+			 	     			<td class="tdclass">{{ form.7 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 8 %}
+			 	     			<td class="tdclass">{{ form.8 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 9 %}
+			 	     			<td class="tdclass">{{ form.9 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 10 %}
+			 	     			<td class="tdclass">{{ form.10 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 11 %}
+			 	     			<td class="tdclass">{{ form.11 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 12 %}
+			 	     			<td class="tdclass">{{ form.12 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 13 %}
+			 	     			<td class="tdclass">{{ form.13 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 14 %}
+			 	     			<td class="tdclass">{{ form.14 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 15 %}
+			 	     			<td class="tdclass">{{ form.15 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 16 %}
+			 	     			<td class="tdclass">{{ form.16 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 17 %}
+			 	     			<td class="tdclass">{{ form.17 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 18 %}
+			 	     			<td class="tdclass">{{ form.18 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 19 %}
+			 	     			<td class="tdclass">{{ form.19 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 20 %}
+			 	     			<td class="tdclass">{{ form.20 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 21 %}
+			 	     			<td class="tdclass">{{ form.21 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 22 %}
+			 	     			<td class="tdclass">{{ form.22 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 23 %}
+			 	     			<td class="tdclass">{{ form.23 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 24 %}
+			 	     			<td class="tdclass">{{ form.24 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 25 %}
+			 	     			<td class="tdclass">{{ form.25 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 26 %}
+			 	     			<td class="tdclass">{{ form.26 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 27 %}
+			 	     			<td class="tdclass">{{ form.27 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 28 %}
+			 	     			<td class="tdclass">{{ form.28 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 29 %}
+			 	     			<td class="tdclass">{{ form.29 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 30 %}
+			 	     			<td class="tdclass">{{ form.30 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 31 %}
+			 	     			<td class="tdclass">{{ form.31 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 32 %}
+			 	     			<td class="tdclass">{{ form.32 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 33 %}
+			 	     			<td class="tdclass">{{ form.33 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 34 %}
+			 	     			<td class="tdclass">{{ form.34 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 35 %}
+			 	     			<td class="tdclass">{{ form.35 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 36 %}
+			 	     			<td class="tdclass">{{ form.36 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 37 %}
+			 	     			<td class="tdclass">{{ form.37 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 38 %}
+			 	     			<td class="tdclass">{{ form.38 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 39 %}
+			 	     			<td class="tdclass">{{ form.39 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 40 %}
+			 	     			<td class="tdclass">{{ form.40 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 41 %}
+			 	     			<td class="tdclass">{{ form.41 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 42 %}
+			 	     			<td class="tdclass">{{ form.42 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 43 %}
+			 	     			<td class="tdclass">{{ form.43 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 44 %}
+			 	     			<td class="tdclass">{{ form.44 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 45 %}
+			 	     			<td class="tdclass">{{ form.45 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 46 %}
+			 	     			<td class="tdclass">{{ form.46 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 47 %}
+			 	     			<td class="tdclass">{{ form.47 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 48 %}
+			 	     			<td class="tdclass">{{ form.48 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 49 %}
+			 	     			<td class="tdclass">{{ form.49 }}</td>
+			 	         	{% endif %}
+			 	         	{% if t.0 == i and t.1 == j and t.2 == 50 %}
+			 	     			<td class="tdclass">{{ form.50 }}</td>
+			 	         	{% endif %}
+		 	         	{% endfor %}
+		 	         {% endfor %}
+		          {% endfor %}
+		          {% else %}
+		            <td class="tdclass"></td>
+		          {% endif %}
+		        </tr>
+		        {% endfor %}
+		      </tbody>
+		   	</table>
+		   </div>
+		   <div>
+		    	<button type="submit" class="button_sinav" style="position:fixed; margin-top: 75px"><span>Notla</span></button>
+		   </div>
+	    </form>
+{% endblock %}

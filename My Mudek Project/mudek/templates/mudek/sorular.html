@@ -1,0 +1,65 @@
+{% extends 'mudek/base.html' %}
+{% block content %}
+	<div style=" width:25%;float: left; margin-left: 37.5%">
+	    <h2 align="center">{{bolum.bolum_adi}}</h2>
+	  </div>
+	  <div style="float: right">
+	  <a class="soru-geri" href="{% url 'mudek:sinavlar' bolum.id akademisyen.id ders.id %}"><i class="material-icons">replay</i>Sınavlar</a>
+	  </div>
+	  <div style="clear: both;"></div>
+	  <div style="margin-left: 25px; width:25%;float: left">
+	    <h3 align="center">{{ders.ders_adi}}</h3>
+	  </div>
+	   <div style="margin-right: 25px; width:25%;float: right">
+	  	<h3 align="center">{{akademisyen.aka_bilgi}}</h3>
+	  </div>
+	  <div style="clear:both;"></div>
+	  <hr>
+<div style="width:90%;margin:auto;">
+<table id="table">
+  <thead class="thead-dark">
+    <tr>
+      <th style="padding-left:15px" colspan="3" align="center">{{sinav.sinav_tur}}</th>
+      
+      <th style="padding-right:15px" colspan="3" align="center">{{sinav.sinav_tarih}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <thead class="thead-light">
+    <tr>
+      <th colspan="1" align="center">Soru No</th>
+      <th colspan="1" align="center">Puan</th>
+      <th colspan="{{maxi}}" align="center">Çıktılar</th>
+      <th align="center">
+      	<button type="submit" class="button_sinav2" onclick="window.location.href='{% url 'mudek:soru_ekle' bolum.id akademisyen.id ders.id sinav.id %}'"><span>Soru Ekle</span></button>
+      </th>
+    </tr>
+    </thead>
+    {% for i in sorular %}
+    <tr>
+      <td class="tdclass">{{i.soru_no}}</td>
+      <td class="tdclass">{{i.soru_puan}}</td>
+      {%for j in i.cikti.all|dictsort:'cikti_no' %}
+      <td class="tdclass">{{j.cikti_no}}</td>
+      {% endfor %}
+      {% if i.cikti.all.count == 1 and maxi == 1 %}
+      {% elif i.cikti.all.count == 1 and maxi == 2 %}
+      <td class="tdclass"></td>
+      {% elif i.cikti.all.count == 1 and maxi == 3%}
+      <td class="tdclass"></td>
+      <td class="tdclass"></td>
+      {% elif i.cikti.all.count == 2 and maxi == 2 %}
+      {%elif i.cikti.all.count == 2 and maxi == 3 %}
+      <td class="tdclass"></td>
+      {%endif%}
+      <td class="tdclass">
+      	<button type="submit" class="button_soru" onclick="window.location.href='{% url 'mudek:soru_sil' bolum.id akademisyen.id ders.id sinav.id i.id %}'"><span>Soruyu Kaldır</span></button>
+      </td>
+    </tr>
+    {% empty %}
+    	<td colspan="4" class="tdclass">Henüz Soru Eklenmemiş</td>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
